@@ -1,0 +1,20 @@
+import { useEffect, useMemo, useState } from 'react';
+import { AlertTriangle, Droplets, Recycle, ShieldAlert, TrendingDown, TrendingUp } from 'lucide-react';
+import { BarChart, Bar, CartesianGrid, Cell, Legend, LineChart, Line, PieChart, Pie, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import api from '../lib/api.js';
+import StatCard from '../components/StatCard.jsx';
+import SectionHeader from '../components/SectionHeader.jsx';
+
+export default function Dashboard() {
+  const [data, setData] = useState(null);
+  useEffect(() => { api.get('/dashboard').then(r => setData(r.data)); }, []);
+  const chartData = useMemo(() => (data?.bySource || []).map(x => ({ name: x._id, reports: x.count })), [data]);
+  if (!data) return <div className="loading-block"><div className="spinner"/>Loading monitoring data…</div>;
+  const s = data.stats;
+  return <div>
+    <div className="hero"><div><div className="eyebrow">COASTAL ECOSYSTEM HEALTH · AUGUST 2026</div><h2>Marine pollution control center</h2><p>Monitor what is entering the ecosystem, how water quality is changing, and where cleanup capacity is being deployed.</p></div><div className="hero-score"><div className="score-ring"><strong>{s.qualityScore}</strong><span>/100</span></div><div><b>Water quality</b><span>Composite score</span></div></div></div>
+    <div className="stats-grid"><StatCard label="Pollution reports" value={s.reports} hint="All recorded incidents" icon={ShieldAlert}/><StatCard label="Water measurements" value={s.waterRecords} hint="Sampling records" icon={Droplets}/><StatCard label="Cleanup activities" value={s.cleanupActivities} hint="Planned + completed" icon={Recycle}/><StatCard label="Waste recovered" value={`${Math.round(s.cleanupTotals.waste)} kg`} hint={`${Math.round(s.cleanupTotals.plastic)} kg plastic`} icon={TrendingUp}/></div>
+    <div className="grid-2"><div className="panel"><SectionHeader title="Pollution sources" description="Reports grouped by pollution pathway."/><div className="chart"><ResponsiveContainer width="100%" height="100%"><BarChart data={chartData}><CartesianGrid strokeDasharray="3 3" vertical={false}/><XAxis dataKey="name" tick={{fontSize:12}}/><YAxis allowDecimals={false}/><Tooltip/><Bar dataKey="reports" radius={[8,8,0,0]}>{chartData.map((e,i)=><Cell key={i}/>)}</Bar></BarChart></ResponsiveContainer></div></div><div className="panel"><SectionHeader title="Water quality trend" description="Latest station observations."/><div className="chart"><ResponsiveContainer width="100%" height="100%"><LineChart data={[...data.water].reverse().map(x=>({ station:x.station, quality:x.qualityStatus==='Good'?100:x.qualityStatus==='Watch'?70:40 }))}><CartesianGrid strokeDasharray="3 3" vertical={false}/><XAxis dataKey="station"/><YAxis domain={[0,100]}/><Tooltip/><Line type="monotone" dataKey="quality" strokeWidth={3} dot={{r:4}}/></LineChart></ResponsiveContainer></div></div></div>
+    <div className="grid-2"><div className="panel"><SectionHeader title="Recent cleanup impact" description="Material recovered from the coastal zone."/><div className="impact-list"><div><span>Waste recovered</span><b>{Math.round(s.cleanupTotals.waste)} kg</b></div><div><span>Plastic recovered</span><b>{Math.round(s.cleanupTotals.plastic)} kg</b></div><div><span>Oil recovered</span><b>{Math.round(s.cleanupTotals.oil)} L</b></div><div><span>Volunteer hours proxy</span><b>{Math.round(s.cleanupTotals.volunteers)} people</b></div></div></div><div className="panel"><SectionHeader title="Priority signals" description="Indicators that need attention."/><div className="signal"><div className="signal-icon warning"><AlertTriangle size={18}/></div><div><b>Industrial discharge</b><span>Ennore Creek shows poor quality and elevated oil index.</span></div><strong>HIGH</strong></div><div className="signal"><div className="signal-icon down"><TrendingDown size={18}/></div><div><b>Marine plastic load</b><span>Current indicator is above the target threshold.</span></div><strong>WATCH</strong></div></div></div>
+  </div>;
+}

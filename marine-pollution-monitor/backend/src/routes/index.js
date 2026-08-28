@@ -1,0 +1,17 @@
+import { Router } from 'express';
+import auth from './auth.js';
+import { makeCrudRoutes } from './generic.js';
+import PollutionReport from '../models/PollutionReport.js';
+import WaterQuality from '../models/WaterQuality.js';
+import CleanupActivity from '../models/CleanupActivity.js';
+import EnvironmentalIndicator from '../models/EnvironmentalIndicator.js';
+import { dashboard } from '../controllers/dashboardController.js';
+import { protect } from '../middleware/auth.js';
+const router = Router();
+router.use('/auth', auth);
+router.get('/dashboard', protect, dashboard);
+router.use('/reports', makeCrudRoutes(PollutionReport, 'reportedBy'));
+router.use('/water-quality', makeCrudRoutes(WaterQuality, 'recordedBy'));
+router.use('/cleanup', makeCrudRoutes(CleanupActivity, 'createdBy'));
+router.use('/indicators', makeCrudRoutes(EnvironmentalIndicator, 'recordedBy'));
+export default router;
