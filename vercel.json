@@ -1,0 +1,10 @@
+{
+  "buildCommand": "npm --prefix marine-pollution-monitor/frontend install && npm --prefix marine-pollution-monitor/frontend run build",
+  "outputDirectory": "marine-pollution-monitor/frontend/dist",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
