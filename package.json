@@ -1,0 +1,14 @@
+{
+  "name": "marine-pollution-monitor-workspace",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n \"BACKEND,FRONTEND\" -c \"cyan,magenta\" \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "npm --prefix marine-pollution-monitor/backend run dev",
+    "dev:frontend": "npm --prefix marine-pollution-monitor/frontend run dev",
+    "seed": "npm --prefix marine-pollution-monitor/backend run seed"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

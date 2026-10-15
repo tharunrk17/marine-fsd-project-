@@ -15,6 +15,15 @@ export async function protect(req, res, next) {
   }
 }
 
+export function allowRoles(...allowedRoles) {
+  return (req, res, next) => {
+    if (!req.user || (!allowedRoles.includes(req.user.role) && req.user.role !== 'admin')) {
+      return res.status(403).json({ message: `Access restricted to: ${allowedRoles.join(', ')}` });
+    }
+    next();
+  };
+}
+
 export function adminOnly(req, res, next) {
   if (req.user?.role !== 'admin') return res.status(403).json({ message: 'Admin access required' });
   next();

@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Report - Marine Pollution Monitor</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 25mm 20mm 20mm 25mm; /* Standard 1 inch margins with 1.25 inch binding margin */
+    }
+
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 12pt;
+      line-height: 1.5;
+      color: #000000;
+      background-color: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .page {
+      min-height: 297mm;
+      box-sizing: border-box;
+      padding: 40px 50px;
+      page-break-after: always;
+      position: relative;
+    }
+
+    @media screen {
+      body {
+        background-color: #e5e7eb;
+        padding: 20px 0;
+      }
+      .page {
+        background: #ffffff;
+        width: 210mm;
+        margin: 20px auto;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      }
+    }
+
+    /* Typography */
+    h1, h2, h3, h4 {
+      font-family: 'Times New Roman', Times, serif;
+      color: #000000;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-top: 15px;
+      margin-bottom: 10px;
+    }
+
+    h1.chapter-title {
+      font-size: 16pt;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 5px;
+      letter-spacing: 0.5px;
+    }
+
+    h2.chapter-subtitle {
+      font-size: 14pt;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 30px;
+    }
+
+    h3.section-title {
+      font-size: 13pt;
+      text-align: left;
+      margin-top: 20px;
+      margin-bottom: 8px;
+    }
+
+    h4.subsection-title {
+      font-size: 12pt;
+      text-align: left;
+      margin-top: 12px;
+      margin-bottom: 6px;
+      text-transform: none;
+      font-weight: bold;
+    }
+
+    p {
+      text-align: justify;
+      text-indent: 30px;
+      margin-bottom: 10px;
+      margin-top: 0;
+    }
+
+    .no-indent {
+      text-indent: 0;
+    }
+
+    .center-text {
+      text-align: center;
+      text-indent: 0;
+    }
+
+    /* Title Page */
+    .title-page {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      min-height: 260mm;
+    }
+
+    .title-page h1 {
+      font-size: 18pt;
+      margin-top: 20px;
+      line-height: 1.3;
+    }
+
+    .title-page h2 {
+      font-size: 14pt;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .college-logo {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      margin: 15px auto;
+      display: block;
+    }
+
+    .logo-placeholder {
+      width: 90px;
+      height: 90px;
+      border: 2px solid #000;
+      border-radius: 50%;
+      margin: 15px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10pt;
+      font-weight: bold;
+      text-align: center;
+      padding: 5px;
+    }
+
+    /* Certificates */
+    .certificate-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .certificate-header h2 {
+      font-size: 15pt;
+      margin-bottom: 5px;
+    }
+
+    .certificate-header h3 {
+      font-size: 14pt;
+      letter-spacing: 1px;
+    }
+
+    .cert-body {
+      line-height: 2.2;
+      font-size: 12pt;
+      text-align: justify;
+      text-indent: 40px;
+      margin: 40px 0 80px 0;
+    }
+
+    .signature-row {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 80px;
+      text-indent: 0;
+    }
+
+    .signature-box {
+      text-align: center;
+      width: 45%;
+    }
+
+    .signature-box .title {
+      font-weight: bold;
+      margin-top: 50px;
+      border-top: 1px solid #000;
+      padding-top: 5px;
+      display: inline-block;
+      width: 80%;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0 25px 0;
+      font-size: 11pt;
+    }
+
+    table, th, td {
+      border: 1px solid #000000;
+    }
+
+    th {
+      background-color: #f3f4f6;
+      font-weight: bold;
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    td {
+      padding: 7px 10px;
+      vertical-align: top;
+    }
+
+    .toc-table td {
+      border-left: none;
+      border-right: none;
+      padding: 6px 4px;
+    }
+
+    .toc-table th {
+      border-left: none;
+      border-right: none;
+    }
+
+    /* Code Snippets */
+    pre {
+      background-color: #f8fafc;
+      border: 1px solid #cbd5e1;
+      padding: 12px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 9.5pt;
+      line-height: 1.35;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+      margin: 10px 0 15px 0;
+    }
+
+    code {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 10pt;
+    }
+
+    .diagram-box {
+      border: 1px solid #000;
+      padding: 15px;
+      margin: 15px 0;
+      background: #fafafa;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 10pt;
+      line-height: 1.3;
+      white-space: pre;
+    }
+
+    /* Lists */
+    ul, ol {
+      margin-top: 5px;
+      margin-bottom: 12px;
+      padding-left: 35px;
+    }
+
+    li {
+      margin-bottom: 6px;
+      line-height: 1.4;
+      text-align: justify;
+    }
+
+    .print-button {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #0284c7;
+      color: white;
+      padding: 12px 24px;
+      font-size: 14px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      z-index: 999;
+    }
+
+    @media print {
+      .print-button {
+        display: none;
+      }
+      body {
+        background: transparent;
+      }
+      .page {
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        min-height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="print-button" onclick="window.print()">Print / Export to PDF</button>
+
+  <!-- ==================== PAGE 1: TITLE PAGE ==================== -->
+  <div class="page title-page">
+    <div style="margin-top: 10px;">
+      <h1>MARINEWATCH: REAL-TIME MARINE POLLUTION MONITORING AND INCIDENT ASSESSMENT SYSTEM</h1>
+      <br><br>
+      <h2 style="font-size: 14pt; font-weight: bold;">A PROJECT REPORT</h2>
+      <p class="center-text" style="font-style: italic; margin-top: 15px;">Submitted by</p>
+      <p class="center-text" style="font-size: 13pt; font-weight: bold; margin-top: 5px;">
+        THARUN R K (Reg. No. 310621104001)<br>
+      </p>
+      <p class="center-text" style="font-style: italic; margin-top: 20px;">
+        in partial fulfillment for the award of the Degree<br>of
+      </p>
+      <h2 style="font-size: 14pt; font-weight: bold; margin-top: 10px;">BACHELOR OF ENGINEERING</h2>
+      <p class="center-text" style="font-style: italic; margin-top: 5px;">in</p>
+      <h2 style="font-size: 13pt; font-weight: bold; margin-top: 5px;">DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING</h2>
+    </div>
+
+    <div style="margin: 20px 0;">
+      <div class="logo-placeholder">
+        EASWARI<br>ENGG COLLEGE<br>CHENNAI
+      </div>
+      <h2 style="font-size: 13pt; font-weight: bold; margin-top: 15px; margin-bottom: 4px;">EASWARI ENGINEERING COLLEGE</h2>
+      <p class="center-text" style="font-size: 10.5pt; font-weight: bold; margin: 0;">
+        (AN AUTONOMOUS INSTITUTION) – AFFILIATED TO ANNA UNIVERSITY, CHENNAI<br>
+        BHARATHI SALAI, RAMAPURAM, CHENNAI – 600089
+      </p>
+    </div>
+
+    <div style="margin-bottom: 25px;">
+      <p class="center-text" style="font-size: 12pt; font-weight: bold;">OCTOBER 2026</p>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 2: BONAFIDE CERTIFICATE ==================== -->
+  <div class="page">
+    <div class="certificate-header">
+      <div class="logo-placeholder" style="width:70px;height:70px;font-size:8pt;margin-bottom:10px;">EASWARI</div>
+      <h2>EASWARI ENGINEERING COLLEGE</h2>
+      <p class="center-text" style="font-size: 10pt; font-weight: bold; margin-bottom: 20px;">
+        (An Autonomous Institution, Affiliated to Anna University, Chennai)<br>
+        Ramapuram, Chennai – 600089
+      </p>
+      <h2 style="text-decoration: underline; letter-spacing: 1.5px; margin-top: 30px;">BONAFIDE CERTIFICATE</h2>
+    </div>
+
+    <p class="cert-body">
+      Certified that this mini project report titled <strong>“MARINEWATCH: REAL-TIME MARINE POLLUTION MONITORING AND INCIDENT ASSESSMENT SYSTEM”</strong> is the Bonafide work of <strong>“THARUN R K (Reg. No. 310621104001)”</strong>, who carried out the project work under my supervision.
+    </p>
+
+    <div class="signature-row">
+      <div class="signature-box">
+        <div style="height: 50px;"></div>
+        <div class="title">HEAD OF THE DEPARTMENT</div>
+        <p class="center-text" style="font-size: 11pt; margin-top: 4px;">Department of Computer Science and Engineering<br>Easwari Engineering College<br>Ramapuram, Chennai – 600089</p>
+      </div>
+      <div class="signature-box">
+        <div style="height: 50px;"></div>
+        <div class="title">SUPERVISOR / PROJECT GUIDE</div>
+        <p class="center-text" style="font-size: 11pt; margin-top: 4px;">Department of Computer Science and Engineering<br>Easwari Engineering College<br>Ramapuram, Chennai – 600089</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 3: VIVA-VOCE EXAMINATION ==================== -->
+  <div class="page">
+    <div class="certificate-header">
+      <div class="logo-placeholder" style="width:70px;height:70px;font-size:8pt;margin-bottom:10px;">EASWARI</div>
+      <h2>EASWARI ENGINEERING COLLEGE</h2>
+      <p class="center-text" style="font-size: 10pt; font-weight: bold; margin-bottom: 25px;">
+        (An Autonomous Institution, Affiliated to Anna University, Chennai)<br>
+        Ramapuram, Chennai – 600089
+      </p>
+      <h2 style="letter-spacing: 1px; margin-top: 20px;">Certificate of Viva-voce-Examination</h2>
+    </div>
+
+    <p class="cert-body" style="margin-top: 25px; margin-bottom: 40px; line-height: 2;">
+      This is to certify that the Viva Voce Examination of the Project Work entitled <strong>“MARINEWATCH: REAL-TIME MARINE POLLUTION MONITORING AND INCIDENT ASSESSMENT SYSTEM”</strong> submitted by <strong>Mr. THARUN R K (Reg. No. 310621104001)</strong> in partial fulfillment of the requirements for the award of the degree of <strong>BACHELOR OF ENGINEERING</strong> was conducted on <strong>_______________</strong> in the Department of <strong>Computer Science and Engineering</strong>, Easwari Engineering College, Ramapuram – Chennai.
+    </p>
+
+    <div class="signature-row" style="margin-top: 50px;">
+      <div class="signature-box" style="text-align: left; width: 45%;">
+        <p class="no-indent" style="font-weight: bold; font-size: 12pt;">Internal Examiner</p>
+        <p class="no-indent" style="margin-top: 15px;">Name: ______________________</p>
+        <p class="no-indent">Designation: _________________</p>
+        <p class="no-indent">Address: ____________________<br>___________________________</p>
+      </div>
+      <div class="signature-box" style="text-align: left; width: 45%;">
+        <p class="no-indent" style="font-weight: bold; font-size: 12pt;">External Examiner</p>
+        <p class="no-indent" style="margin-top: 15px;">Name: ______________________</p>
+        <p class="no-indent">Designation: _________________</p>
+        <p class="no-indent">Address: ____________________<br>___________________________</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 60px;">
+      <p class="no-indent" style="font-weight: bold;">Date: ________________</p>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 4: ABSTRACT ==================== -->
+  <div class="page">
+    <h1 class="chapter-title" style="margin-bottom: 30px;">ABSTRACT</h1>
+
+    <p>
+      Marine ecosystems worldwide face catastrophic environmental degradation driven by unchecked anthropogenic plastic waste deposition, toxic industrial discharges, and recurrent coastal oil spills. Existing marine pollution surveillance systems remain predominantly fragmented, relying on manual data logs, retrospective sampling, and disconnected municipal response desks. This lack of automated, centralized data synthesis creates critical latency between pollutant detection and remediation deployment, exacerbating marine habitat devastation and endangering public health.
+    </p>
+    <p>
+      To resolve these challenges, this project introduces <strong>MarineWatch</strong>, a unified full-stack web-based Marine Pollution Monitoring and Incident Assessment System architected on the MERN stack (MongoDB, Express.js, React 19, and Node.js). The system bridges citizen observation, environmental enforcement officers, and non-governmental organizations (NGOs) through an evidence-based digital platform. MarineWatch features a multi-tiered Role-Based Access Control (RBAC) mechanism governed by JSON Web Tokens (JWT) and Bcrypt hashing, ensuring secure authorization across Administrators, Environmental Officers, NGO Coordinators, and Citizens.
+    </p>
+    <p>
+      The platform incorporates an interactive geospatial incident reporting module powered by React-Leaflet, allowing verified reporting of plastic dumps, chemical effluents, and oil slicks with precise GPS coordinates, severity markers (Low, Medium, High), visual media links, and a lifecycle status tracking pipeline (Reported &rarr; Investigating &rarr; Cleanup Planned &rarr; Resolved). In parallel, continuous multi-parameter water-quality telemetry records pH, Dissolved Oxygen (mg/L), Turbidity (NTU), Temperature (&deg;C), Oil Index, and Microplastic Density across coastal stations, automatically classifying status into Good, Watch, or Poor.
+    </p>
+    <p>
+      An administrative analytics engine utilizing MongoDB Aggregation Pipelines and Recharts renders dynamic longitudinal distributions, source breakdowns, and volunteer response metrics. Furthermore, volunteer mobilization for cleanup drives enables direct material recovery auditing (kg of plastic collected, litres of oil salvaged). The platform demonstrates high fault tolerance, clean RESTful API standards, responsive glassmorphic UI, and robust full-stack software engineering methodologies.
+    </p>
+  </div>
+
+  <!-- ==================== PAGE 5: ACKNOWLEDGEMENT ==================== -->
+  <div class="page">
+    <h1 class="chapter-title" style="margin-bottom: 35px;">ACKNOWLEDGEMENT</h1>
+
+    <p>
+      We express our sincere gratitude to the Principal <strong>Dr. P. Deiva Sundari</strong> and the Management of our college for providing us with the opportunity and state-of-the-art infrastructural facilities to carry out this project work successfully.
+    </p>
+    <p>
+      We convey our heartfelt thanks to the <strong>Head of the Department</strong>, Department of <strong>Computer Science and Engineering</strong>, for the continuous encouragement, constructive suggestions, and academic support extended throughout the course of this semester.
+    </p>
+    <p>
+      We are extremely thankful to our <strong>Project Guide</strong>, Department of <strong>Computer Science and Engineering</strong>, for valuable guidance, scholarly suggestions, vigilant feedback, and motivation throughout the conception, architectural design, implementation, and completion of this project.
+    </p>
+    <p>
+      We would also like to extend our profound gratitude to all the faculty members and technical staff of the Department of <strong>Computer Science and Engineering</strong> for their timely advice and generous assistance during critical phases of our work.
+    </p>
+    <p>
+      Finally, we thank our parents and friends for their constant encouragement, selfless sacrifices, and unwavering support and help during the entire course of this project.
+    </p>
+  </div>
+
+  <!-- ==================== PAGE 6: TABLE OF CONTENTS ==================== -->
+  <div class="page">
+    <h1 class="chapter-title" style="margin-bottom: 25px;">TABLE OF CONTENTS</h1>
+
+    <table class="toc-table">
+      <thead>
+        <tr>
+          <th style="width: 18%;">CHAPTER NO.</th>
+          <th style="width: 70%;">TITLE</th>
+          <th style="width: 12%; text-align: right;">PAGE No.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <td><strong>ABSTRACT</strong></td>
+          <td style="text-align: right;">iv</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><strong>ACKNOWLEDGEMENT</strong></td>
+          <td style="text-align: right;">v</td>
+        </tr>
+        <tr>
+          <td><strong>CHAPTER 1</strong></td>
+          <td><strong>INTRODUCTION</strong></td>
+          <td style="text-align: right;"><strong>1</strong></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>1.1 OVERVIEW</td>
+          <td style="text-align: right;">1</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>1.2 PROBLEM DEFINITION</td>
+          <td style="text-align: right;">2</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>1.3 OBJECTIVE</td>
+          <td style="text-align: right;">2</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>1.4 SCOPE OF THE PROJECT</td>
+          <td style="text-align: right;">3</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>1.5 MOTIVATION</td>
+          <td style="text-align: right;">3</td>
+        </tr>
+        <tr>
+          <td><strong>CHAPTER 2</strong></td>
+          <td><strong>RELATED WORK</strong></td>
+          <td style="text-align: right;"><strong>4</strong></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>2.1 LITERATURE REVIEW</td>
+          <td style="text-align: right;">4</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>2.2 EXISTING SYSTEM</td>
+          <td style="text-align: right;">5</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>2.3 PROPOSED SYSTEM</td>
+          <td style="text-align: right;">6</td>
+        </tr>
+        <tr>
+          <td><strong>CHAPTER 3</strong></td>
+          <td><strong>SYSTEM ANALYSIS</strong></td>
+          <td style="text-align: right;"><strong>7</strong></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>3.1 SYSTEM REQUIREMENTS</td>
+          <td style="text-align: right;">7</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>3.2 SOFTWARE AND HARDWARE REQUIREMENTS</td>
+          <td style="text-align: right;">8</td>
+        </tr>
+        <tr>
+          <td><strong>CHAPTER 4</strong></td>
+          <td><strong>SYSTEM DESIGN</strong></td>
+          <td style="text-align: right;"><strong>9</strong></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>4.1 SYSTEM ARCHITECTURE</td>
+          <td style="text-align: right;">9</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>4.2 MODULE DESCRIPTION</td>
+          <td style="text-align: right;">10</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>4.4 CLASS DIAGRAM</td>
+          <td style="text-align: right;">11</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>4.5 SEQUENCE DIAGRAM</td>
+          <td style="text-align: right;">12</td>
+        </tr>
+        <tr>
+          <td><strong>CHAPTER 5</strong></td>
+          <td><strong>IMPLEMENTATION</strong></td>
+          <td style="text-align: right;"><strong>13</strong></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>5.1 IMPLEMENTATION OVERVIEW</td>
+          <td style="text-align: right;">13</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>5.2 KEY FUNCTIONS (CODE EXPLANATION)</td>
+          <td style="text-align: right;">14</td>
+        </tr>
+        <tr>
+          <td><strong>CHAPTER 6</strong></td>
+          <td><strong>CONCLUSION &amp; FUTURE WORK</strong></td>
+          <td style="text-align: right;"><strong>17</strong></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>6.1 CONCLUSION</td>
+          <td style="text-align: right;">17</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>6.2 FUTURE ENHANCEMENTS</td>
+          <td style="text-align: right;">18</td>
+        </tr>
+        <tr>
+          <td><strong>APPENDIX</strong></td>
+          <td><strong>SOURCE CODE</strong></td>
+          <td style="text-align: right;"><strong>19</strong></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>1. Project Structure</td>
+          <td style="text-align: right;">19</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>2. Backend Package Installation</td>
+          <td style="text-align: right;">19</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>3. Database Connection</td>
+          <td style="text-align: right;">20</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>4. Environment Variables</td>
+          <td style="text-align: right;">20</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>5. User Model</td>
+          <td style="text-align: right;">20</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>6. Password Hashing and Registration</td>
+          <td style="text-align: right;">21</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>7. Login and JWT Generation</td>
+          <td style="text-align: right;">21</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>8. Authentication Middleware</td>
+          <td style="text-align: right;">22</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>9. Create API</td>
+          <td style="text-align: right;">22</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>10. Read API</td>
+          <td style="text-align: right;">23</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>11. Update</td>
+          <td style="text-align: right;">23</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>12. Delete</td>
+          <td style="text-align: right;">24</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>13. Express Routes</td>
+          <td style="text-align: right;">24</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>14. Main Server File</td>
+          <td style="text-align: right;">25</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>15. React Login Component</td>
+          <td style="text-align: right;">25</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>16. Admin Dashboard Logic</td>
+          <td style="text-align: right;">26</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>17. REST API Request and Response Examples</td>
+          <td style="text-align: right;">27</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><strong>SCREENSHOTS OF THE PROJECT</strong></td>
+          <td style="text-align: right;"><strong>28</strong></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><strong>REFERENCES</strong></td>
+          <td style="text-align: right;"><strong>30</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ==================== PAGE 7: CHAPTER 1 INTRODUCTION ==================== -->
+  <div class="page">
+    <h1 class="chapter-title">CHAPTER 1</h1>
+    <h2 class="chapter-subtitle">INTRODUCTION</h2>
+
+    <h3 class="section-title">1.1 OVERVIEW</h3>
+    <p>
+      The world ocean covers over 70% of the Earth's surface, acts as the primary climate regulator, produces over 50% of the planetary oxygen supply, and provides essential livelihood and sustenance for billions of people. However, coastal and pelagic ecosystems are under unprecedented threat due to the compounding influx of anthropogenic contaminants. Over 14 million tons of plastics enter ocean waterways annually, breaking down into hazardous microplastics that enter the marine food web. Concurrently, unmonitored chemical discharge from industrial zones and catastrophic hydrocarbon release from maritime transit vessels cause severe hypoxia, coral bleaching, and catastrophic biodiversity die-offs.
+    </p>
+    <p>
+      Addressing these multi-vector ecological threats requires immediate synergy between public environmental awareness, rapid civic reporting, authoritative regulatory oversight, and coordinated ground-level cleanup operations. The <strong>MarineWatch: Marine Pollution Monitoring System</strong> is conceived as a comprehensive, full-stack software application built on modern web standards (MongoDB, Express.js, React, Node.js). It digitizes the incident lifecycle, provides multi-parameter water-quality analytics, coordinates community cleanup volunteer drives, and delivers interactive visual telemetry to support data-driven maritime conservation.
+    </p>
+
+    <h3 class="section-title">1.2 PROBLEM DEFINITION</h3>
+    <p>
+      Conventional marine pollution management in developing and coastal regions suffers from severe organizational and technological gaps:
+    </p>
+    <ul>
+      <li><strong>Lack of Centralized Incident Telemetry:</strong> Public sightings of oil slicks, chemical plumes, and beach debris accumulations are typically reported through disconnected telephone hotlines or fragmented social media posts, resulting in untracked cases and delayed municipal response.</li>
+      <li><strong>Disconnected Sensor and Laboratory Logs:</strong> Key water quality indices (pH, Dissolved Oxygen, Turbidity, Temperature, Oil Slicks) are recorded on paper ledgers or standalone spreadsheets without temporal synchronization or geospatial visualization.</li>
+      <li><strong>Absence of Field Action Traceability:</strong> Coastal cleanup operations by volunteer NGOs lack systematic tracking of tonnage collected, salvage metrics, or volunteer participation audits.</li>
+      <li><strong>Lack of Role-Based Governance:</strong> Without secure authentication and role segregation, sensitive environmental violation records are susceptible to tampering or uncoordinated edits.</li>
+    </ul>
+
+    <h3 class="section-title">1.3 OBJECTIVE</h3>
+    <p>
+      The core objectives of the Marine Pollution Monitoring project are:
+    </p>
+    <ul>
+      <li>To engineer a high-performance web platform that consolidates marine pollution reporting, water quality monitoring, cleanup logistics, and visual analytics into a single unified interface.</li>
+      <li>To implement a robust Role-Based Access Control (RBAC) architecture using JSON Web Tokens (JWT) and encrypted password hashing, ensuring distinct privilege levels for Administrators, Environmental Officers, NGO Coordinators, and Citizens.</li>
+      <li>To provide an interactive geospatial mapping module using Leaflet that pinpoints pollution incidents with customized color-coded indicators, geographic coordinates, and real-time status toggles.</li>
+      <li>To build a comprehensive water quality telemetry module tracking pH, dissolved oxygen, turbidity, temperature, and microplastics against standardized safety thresholds.</li>
+      <li>To provide real-time analytical dashboards using Recharts and MongoDB Aggregation to visualize pollutant distributions, incident severity counts, and longitudinal environmental indicators.</li>
+    </ul>
+
+    <h3 class="section-title">1.4 SCOPE OF THE PROJECT</h3>
+    <p>
+      The scope of the MarineWatch platform encompasses:
+    </p>
+    <ul>
+      <li><strong>Citizen &amp; Field Reporting:</strong> Permitting authenticated users to report pollution incidents with geotags, category classification (Plastic, Industrial Discharge, Oil Spill, Other), and severity tags.</li>
+      <li><strong>Regulatory Workflow Management:</strong> Empowering certified Environmental Officers and Admins to transition incident statuses across a 4-stage lifecycle (Reported &rarr; Investigating &rarr; Cleanup Planned &rarr; Resolved).</li>
+      <li><strong>Scientific Water Quality Registry:</strong> Enabling research stations to log physical, chemical, and biological sensor metrics and compute immediate quality statuses (Good, Watch, Poor).</li>
+      <li><strong>NGO Cleanup Coordination:</strong> Scheduling beach/marine cleanup events, tracking volunteer enrollments, and recording quantitative waste recovery metrics (kg of waste, kg of plastic, litres of oil).</li>
+      <li><strong>Cross-Platform Accessibility:</strong> Providing a responsive, modern desktop and mobile-friendly web experience with zero barrier to entry.</li>
+    </ul>
+
+    <h3 class="section-title">1.5 MOTIVATION</h3>
+    <p>
+      The United Nations Sustainable Development Goal 14 (Life Below Water) mandates urgent global interventions to prevent and substantially reduce marine pollution of all kinds by 2025–2030. Achieving this target requires accessible digital infrastructure that empowers everyday citizens as active environmental custodians while equipping environmental authorities with reliable, real-time data pipelines. The motivation of this project is to apply modern full-stack web engineering principles to an urgent ecological crisis, demonstrating how modern web stacks can power civic action and data-driven environmental governance.
+    </p>
+  </div>
+
+  <!-- ==================== PAGE 8: CHAPTER 2 RELATED WORK ==================== -->
+  <div class="page">
+    <h1 class="chapter-title">CHAPTER 2</h1>
+    <h2 class="chapter-subtitle">RELATED WORK</h2>
+
+    <h3 class="section-title">2.1 LITERATURE REVIEW</h3>
+    <p>
+      Substantial academic and commercial research has addressed water quality telemetry and environmental incident logging. Traditional environmental surveillance relies heavily on government-operated satellite remote sensing (e.g., European Space Agency Sentinel-1 Synthetic Aperture Radar for oil spill tracking) and fixed ocean buoys. While effective for macroscopic open-ocean phenomena, these systems exhibit major blind spots in coastal zones, nearshore estuaries, and localized beach regions where municipal plastic dumping and illegal industrial sewer discharging occur.
+    </p>
+    <p>
+      Recent studies by environmental informatics researchers highlight the transformative impact of <em>crowdsourced citizen sensing</em>. Platforms such as the Ocean Conservancy's Clean Swell app demonstrate that citizen reports provide dense localized spatial data. However, existing applications are frequently siloed—Clean Swell focuses strictly on beach litter item tallies without water quality chemical metrics, while municipal water portals remain locked behind closed government intranets without public access. MarineWatch closes this gap by synthesizing crowdsourced field reports, scientific sensor metrics, and volunteer mitigation onto an open REST-driven MERN platform.
+    </p>
+
+    <h3 class="section-title">2.2 EXISTING SYSTEM</h3>
+    <p>
+      The prevailing methodologies employed by coastal municipalities and environmental protection agencies present the following bottlenecks:
+    </p>
+    <ul>
+      <li><strong>Manual Reporting Pipelines:</strong> Incidents are logged via paper complaints or unstructured email notices, causing days of delay before an inspection team is dispatched.</li>
+      <li><strong>Siloed Spreadsheets:</strong> Water quality stations store parameter measurements locally in disconnected Excel spreadsheets, inhibiting longitudinal trend analysis.</li>
+      <li><strong>Lack of Real-time Spatial Pinpointing:</strong> Reports lack verified geographic coordinates and interactive maps, leading to navigational confusion during field operations.</li>
+      <li><strong>Zero Public Transparency:</strong> Citizens who report pollution never receive status updates on whether the violation was investigated or resolved.</li>
+      <li><strong>Static Visualizations:</strong> Environmental administrators lack automated chart generation, necessitating manual report preparation for management reviews.</li>
+    </ul>
+
+    <h3 class="section-title">2.3 PROPOSED SYSTEM</h3>
+    <p>
+      The proposed <strong>MarineWatch System</strong> delivers a modern, reactive single-page application built on the MERN technology stack:
+    </p>
+    <ul>
+      <li><strong>Unified Multi-Tier Architecture:</strong> Decoupled React single-page frontend communicating via asynchronous JSON REST APIs with a scalable Express/Node.js backend and a MongoDB document database.</li>
+      <li><strong>Role-Based Access Control (RBAC):</strong> Four distinct persona levels—Admin (complete governance &amp; deletion rights), Officer (status lifecycle &amp; water quality validation), NGO (cleanup drive management), and Citizen (incident reporting and volunteer registration).</li>
+      <li><strong>Geospatial Map Visualization:</strong> Interactive Leaflet map embedding dynamic color-coded markers (Blue for Plastic, Orange for Industrial, Red for Oil Spills) with coordinate pickers and interactive popups.</li>
+      <li><strong>Lifecycle Status Tracking:</strong> Strict State-Machine lifecycle for every report: <code>Reported &rarr; Investigating &rarr; Cleanup Planned &rarr; Resolved</code>.</li>
+      <li><strong>Continuous Water Quality Indexing:</strong> Structured schemas for monitoring pH, Dissolved Oxygen, Turbidity, Microplastics, and Oil Index with automated status labeling.</li>
+      <li><strong>Responsive Analytics Dashboard:</strong> Live aggregation pipelines computing incident summaries, source distributions, severity breakdowns, and volunteer impact stats rendered through Recharts.</li>
+    </ul>
+  </div>
+
+  <!-- ==================== PAGE 9: CHAPTER 3 SYSTEM ANALYSIS ==================== -->
+  <div class="page">
+    <h1 class="chapter-title">CHAPTER 3</h1>
+    <h2 class="chapter-subtitle">SYSTEM ANALYSIS</h2>
+
+    <h3 class="section-title">3.1 SYSTEM REQUIREMENTS</h3>
+
+    <h4 class="subsection-title">3.1.1 Functional Requirements</h4>
+    <ul>
+      <li><strong>User Management:</strong> Secure user registration, authentication with JWT tokens, role attribution, and persistent session recovery via browser LocalStorage.</li>
+      <li><strong>Incident Reporting:</strong> Submission of pollution incidents containing title, pollution category, severity, textual description, photo URL, and GPS latitude/longitude.</li>
+      <li><strong>Interactive Map Navigation:</strong> Geospatial rendering of all active pollution clusters with filter toggles for category, severity, and response status.</li>
+      <li><strong>Status Progression:</strong> Privileged endpoints allowing Officers and Admins to advance incident resolution stages.</li>
+      <li><strong>Water Quality Logging:</strong> Logging station measurements (pH, dissolved oxygen, turbidity, temperature, microplastics count, oil index) and retrieving historical time-series data.</li>
+      <li><strong>Cleanup Operations:</strong> Creation of cleanup drives, registration of citizen volunteers, and quantitative logging of recovered waste tonnage.</li>
+      <li><strong>Environmental Indicators:</strong> Monitoring key ecological indicators against predefined targets with trend direction indicators (Improving, Stable, Deteriorating).</li>
+    </ul>
+
+    <h4 class="subsection-title">3.1.2 Non-Functional Requirements</h4>
+    <ul>
+      <li><strong>Security:</strong> Salted password hashing via Bcrypt (cost factor 10), bearer token verification for protected routes, and HTTP-only protection against unauthorized mutation.</li>
+      <li><strong>Performance &amp; Scalability:</strong> Sub-200ms API response times through MongoDB indexing, lightweight JSON payloads, and Vite-optimized client bundling.</li>
+      <li><strong>Usability &amp; Responsiveness:</strong> Fluid UI adapting seamlessly to desktop monitors (1920x1080), laptops, tablets, and smartphones.</li>
+      <li><strong>Reliability &amp; Data Integrity:</strong> Strict schema validation via Mongoose, transactional error handling, and graceful API fallback messages.</li>
+    </ul>
+
+    <h3 class="section-title">3.2 SOFTWARE AND HARDWARE REQUIREMENTS</h3>
+
+    <h4 class="subsection-title">3.2.1 Hardware Requirements</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Component</th>
+          <th>Development Environment</th>
+          <th>Client Machine (Minimum)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Processor</td>
+          <td>Intel Core i5 / AMD Ryzen 5 or higher</td>
+          <td>Dual Core 1.8 GHz or equivalent</td>
+        </tr>
+        <tr>
+          <td>RAM</td>
+          <td>8 GB DDR4 or higher</td>
+          <td>4 GB RAM</td>
+        </tr>
+        <tr>
+          <td>Storage</td>
+          <td>256 GB SSD (500 MB free for app)</td>
+          <td>100 MB free disk space</td>
+        </tr>
+        <tr>
+          <td>Network</td>
+          <td>High-speed broadband / Wi-Fi</td>
+          <td>Standard Internet (1 Mbps+)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4 class="subsection-title">3.2.2 Software Requirements</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Tier / Layer</th>
+          <th>Technology / Tool</th>
+          <th>Version</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Operating System</td>
+          <td>Windows 10 / 11, Linux, or macOS</td>
+          <td>64-bit</td>
+        </tr>
+        <tr>
+          <td>Database Server</td>
+          <td>MongoDB Community / MongoDB Atlas</td>
+          <td>v7.0 / v8.0</td>
+        </tr>
+        <tr>
+          <td>Backend Runtime</td>
+          <td>Node.js (ES Modules)</td>
+          <td>v20.x or higher</td>
+        </tr>
+        <tr>
+          <td>Backend Framework</td>
+          <td>Express.js</td>
+          <td>v5.1.0</td>
+        </tr>
+        <tr>
+          <td>ODM (Object Data Modeling)</td>
+          <td>Mongoose</td>
+          <td>v8.18.0</td>
+        </tr>
+        <tr>
+          <td>Frontend Library</td>
+          <td>React.js (React DOM)</td>
+          <td>v19.1.1</td>
+        </tr>
+        <tr>
+          <td>Frontend Build Tool</td>
+          <td>Vite</td>
+          <td>v7.1.2</td>
+        </tr>
+        <tr>
+          <td>Routing &amp; Client State</td>
+          <td>React Router DOM</td>
+          <td>v7.8.2</td>
+        </tr>
+        <tr>
+          <td>Geospatial Mapping</td>
+          <td>Leaflet &amp; React-Leaflet</td>
+          <td>v1.9.4 &amp; v5.0.0</td>
+        </tr>
+        <tr>
+          <td>Data Visualization</td>
+          <td>Recharts</td>
+          <td>v3.1.2</td>
+        </tr>
+        <tr>
+          <td>Icons &amp; Styling</td>
+          <td>Lucide-React, CSS3 Design Tokens</td>
+          <td>v0.468.0</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ==================== PAGE 10: CHAPTER 4 SYSTEM DESIGN ==================== -->
+  <div class="page">
+    <h1 class="chapter-title">CHAPTER 4</h1>
+    <h2 class="chapter-subtitle">SYSTEM DESIGN</h2>
+
+    <h3 class="section-title">4.1 SYSTEM ARCHITECTURE</h3>
+    <p>
+      The architecture of MarineWatch follows a clean Three-Tier Client-Server distributed design. The Presentation Tier comprises a React 19 Single Page Application (SPA), the Application Tier hosts an Express 5 REST API on Node.js, and the Data Tier leverages MongoDB for flexible document persistence.
+    </p>
+
+    <div class="diagram-box">
++---------------------------------------------------------------------------------+
+|                               PRESENTATION TIER                                 |
+|   React 19 SPA | React Router 7 | Vite | Recharts Analytics | Leaflet Maps     |
++---------------------------------------------------------------------------------+
+                                      |
+                           HTTPS / JSON (Axios Client)
+                        Bearer JWT in Authorization Header
+                                      v
++---------------------------------------------------------------------------------+
+|                             APPLICATION LOGIC TIER                              |
+|   Node.js (v20) + Express.js 5                                                  |
+|   - CORS & JSON Body Parsing Middleware                                         |
+|   - JWT Authentication & RBAC Authorization Middleware (protect, allowRoles)   |
+|   - Modular API Routes: /auth, /reports, /water-quality, /cleanup, /dashboard   |
+|   - Business Controllers (bcryptjs, crudController, aggregation pipelines)      |
++---------------------------------------------------------------------------------+
+                                      |
+                            Mongoose ODM Queries
+                            Async Connection Pool
+                                      v
++---------------------------------------------------------------------------------+
+|                                 DATA TIER                                       |
+|   MongoDB Database (marine_pollution_monitor)                                   |
+|   Collections: users | pollutionreports | waterqualities | cleanupactivities   |
++---------------------------------------------------------------------------------+
+    </div>
+
+    <h3 class="section-title">4.2 MODULE DESCRIPTION</h3>
+    <ol>
+      <li><strong>Authentication &amp; User Authorization Module:</strong> Implements secure registration and login using bcryptjs for cryptographic hashing and jsonwebtoken for stateless JWT token creation. Handles role decoding and protects routes based on user role (Citizen, NGO, Officer, Admin).</li>
+      <li><strong>Pollution Incident Management Module:</strong> Allows authenticated users to report pollution sightings with category, severity, description, and GPS coordinates. Powers filtering by source, severity, and status, and enables officers to update incident lifecycles.</li>
+      <li><strong>Geospatial Map Module:</strong> Integrates Leaflet to render high-resolution OpenStreetMap tiles. Displays color-coded markers for each pollution incident with clickable cards displaying severity, images, and coordinates.</li>
+      <li><strong>Water Quality Telemetry Module:</strong> Collects readings for physical and chemical parameters across stations (pH, Dissolved Oxygen, Turbidity, Temperature, Oil Index, Microplastics) and evaluates ecological safety levels.</li>
+      <li><strong>Cleanup Operations &amp; Volunteer Module:</strong> Coordinates beach and ocean cleanup campaigns, manages citizen volunteer registrations, and records quantitative metrics for waste and plastic collected.</li>
+      <li><strong>Analytics &amp; Dashboard Aggregation Module:</strong> Executes MongoDB aggregation queries to compute totals, status ratios, source counts, and historical water telemetry trends rendered in interactive Recharts charts.</li>
+    </ol>
+
+    <h3 class="section-title">4.4 CLASS DIAGRAM</h3>
+    <div class="diagram-box">
++---------------------------------------+       +---------------------------------------+
+|                 User                  |       |            PollutionReport            |
++---------------------------------------+       +---------------------------------------+
+| - _id: ObjectId                       | 1   * | - _id: ObjectId                       |
+| - name: String                        |<------| - title: String                       |
+| - email: String                       |       | - source: String (Plastic/Oil/...)    |
+| - password: String (Hashed)           |       | - severity: String (Low/Med/High)     |
+| - role: Enum(admin/officer/ngo/cit)   |       | - location: String                    |
+| - createdAt: Date                     |       | - latitude: Number, longitude: Number |
++---------------------------------------+       | - status: Enum(Reported/Investigating/|
+| + register()                          |       |          Cleanup Planned/Resolved)    |
+| + login()                             |       | - reportedBy: ObjectId (Ref: User)    |
++---------------------------------------+       +---------------------------------------+
+                    ^                                       ^
+                    | 1                                     | 1
+                    |                                       |
+                    | *                                     | *
++---------------------------------------+       +---------------------------------------+
+|             WaterQuality              |       |            CleanupActivity            |
++---------------------------------------+       +---------------------------------------+
+| - _id: ObjectId                       |       | - _id: ObjectId                       |
+| - station: String                     |       | - name: String                        |
+| - location: String                    |       | - reportId: ObjectId (Ref: Report)    |
+| - ph: Number                          |       | - volunteers: Number                  |
+| - dissolvedOxygen: Number             |       | - wasteCollectedKg: Number            |
+| - turbidity: Number                   |       | - plasticCollectedKg: Number          |
+| - temperature: Number                 |       | - oilRecoveredLitres: Number          |
+| - qualityStatus: Enum(Good/Watch/Poor)|       | - status: Enum(Planned/Ongoing/Done)  |
+| - recordedBy: ObjectId (Ref: User)    |       | - createdBy: ObjectId (Ref: User)     |
++---------------------------------------+       +---------------------------------------+
+    </div>
+
+    <h3 class="section-title">4.5 SEQUENCE DIAGRAM</h3>
+    <p>
+      The sequence diagram below illustrates the complete lifecycle of submitting a pollution incident and subsequently updating its status:
+    </p>
+    <div class="diagram-box">
+User (Client)            React Frontend           Express Server (API)          MongoDB Database
+     |                         |                            |                          |
+     |-- 1. Fill Incident Form |                            |                          |
+     |   & Click Submit ------>|                            |                          |
+     |                         |-- 2. POST /api/reports --->|                          |
+     |                         |      (Bearer JWT)          |                          |
+     |                         |                            |-- 3. Verify JWT Token    |
+     |                         |                            |   & Extract User ID ---->|
+     |                         |                            |-- 4. PollutionReport.create()
+     |                         |                            |      Insert Document --->|
+     |                         |                            |                          |-- 5. Saved OK
+     |                         |                            |<-- 6. Document Created --|
+     |                         |<-- 7. HTTP 201 + JSON -----|
+     |<-- 8. Marker Added on   |
+     |    Map & Table Refresh -|
+     |                         |
+[Officer Login]                |
+     |-- 9. Inspect Incident ->|
+     |   & Change Status ----->|-- 10. PATCH /reports/:id/status
+     |                         |       { status: 'Resolved' }
+     |                         |                            |-- 11. Check Role == 'officer'
+     |                         |                            |-- 12. findByIdAndUpdate()
+     |                         |                            |   Update Status -------->|
+     |                         |                            |<-- 13. Return Updated ---|
+     |                         |<-- 14. HTTP 200 OK --------|
+     |<-- 15. Status Badge ----|
+          Updates Green
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 11: CHAPTER 5 IMPLEMENTATION ==================== -->
+  <div class="page">
+    <h1 class="chapter-title">CHAPTER 5</h1>
+    <h2 class="chapter-subtitle">IMPLEMENTATION</h2>
+
+    <h3 class="section-title">5.1 IMPLEMENTATION OVERVIEW</h3>
+    <p>
+      The implementation of MarineWatch is realized through a modern JavaScript ecosystem adhering to ECMAScript modules (ESM). The backend server is initialized in <code>server.js</code> with Express 5, configured with CORS middleware to permit authenticated client interactions across localhost and deployment domains. Environment configuration is centralized via <code>dotenv</code>. Database persistence is established through Mongoose ODM, utilizing asynchronous connection pooling.
+    </p>
+    <p>
+      The frontend is built using React 19 bundled with Vite 7 for rapid Hot Module Replacement (HMR). Routing is handled by <code>react-router-dom</code> (v7), providing public routes for landing and authentication, and protected layout routes for the authenticated operational dashboard. State management is coordinated through a custom <code>AuthContext</code> that persists session tokens in <code>localStorage</code>, while Axios interceptors automatically attach the Bearer token to all outgoing HTTP request headers.
+    </p>
+
+    <h3 class="section-title">5.2 KEY FUNCTIONS (CODE EXPLANATION)</h3>
+
+    <h4 class="subsection-title">1. Asynchronous Database Connection (<code>backend/src/config/db.js</code>)</h4>
+    <p>
+      The <code>connectDB()</code> function establishes connection to the MongoDB cluster. It verifies the presence of the <code>MONGO_URI</code> environment variable, handles connection exceptions gracefully, and ensures the Express application only begins listening on its port once database readiness is confirmed.
+    </p>
+
+    <h4 class="subsection-title">2. JWT Verification and Role-Based Middleware (<code>backend/src/middleware/auth.js</code>)</h4>
+    <p>
+      The <code>protect</code> middleware intercepts incoming HTTP requests, extracts the authorization header, verifies the JWT signature against <code>process.env.JWT_SECRET</code>, and attaches the sanitized user document (excluding password hash) to <code>req.user</code>. The companion <code>allowRoles(...roles)</code> middleware validates that the authenticated user possesses the required privileges before delegating execution to the route controller.
+    </p>
+
+    <h4 class="subsection-title">3. Generic Factory CRUD Controller (<code>backend/src/controllers/crudController.js</code>)</h4>
+    <p>
+      To achieve modularity and code reusability, a higher-order factory function <code>crudController(Model, ownerField, populate)</code> generates standard RESTful handlers (<code>list</code>, <code>get</code>, <code>create</code>, <code>update</code>, <code>remove</code>) for any Mongoose model. It integrates dynamic text regex searching across string schema paths and guarantees proper ownership binding.
+    </p>
+
+    <h4 class="subsection-title">4. Dashboard Multi-Stage Aggregation Pipeline (<code>backend/src/controllers/dashboardController.js</code>)</h4>
+    <p>
+      The dashboard controller utilizes MongoDB Aggregation Pipelines to process large volumes of environmental data in real time. It calculates total incident counts, aggregates active vs. resolved ratios, groups pollution incidents by source, and aggregates total waste and oil recovered across all cleanup operations in a single coordinated query.
+    </p>
+
+    <h4 class="subsection-title">5. Interactive Leaflet Map Integration (<code>frontend/src/pages/Reports.jsx</code>)</h4>
+    <p>
+      The incident reporting interface integrates <code>react-leaflet</code> to render interactive maps. Using <code>L.divIcon</code>, customized SVG pinpoint markers are generated dynamically based on pollutant type. Clicking any marker reveals a popup containing severity tags, GPS coordinates, reporter information, and direct links to update incident status.
+    </p>
+  </div>
+
+  <!-- ==================== PAGE 12: CHAPTER 6 CONCLUSION & FUTURE WORK ==================== -->
+  <div class="page">
+    <h1 class="chapter-title">CHAPTER 6</h1>
+    <h2 class="chapter-subtitle">CONCLUSION &amp; FUTURE WORK</h2>
+
+    <h3 class="section-title">6.1 CONCLUSION</h3>
+    <p>
+      The <strong>MarineWatch: Marine Pollution Monitoring System</strong> successfully addresses the critical communication and technological gaps hindering coastal and ocean conservation. By integrating citizen incident reporting, authenticated regulatory workflows, continuous scientific water-quality telemetry, and NGO cleanup coordination into a single, cohesive full-stack MERN application, the platform provides an accessible, evidence-based tool for environmental protection.
+    </p>
+    <p>
+      The system achieves strict role segregation using JSON Web Tokens and Bcrypt encryption, provides real-time geospatial insight through Leaflet maps, and transforms raw multi-parameter data into actionable visual analytics using Recharts and MongoDB Aggregation Pipelines. The engineering methodology demonstrated here highlights how modern web architectures can empower civic action and accelerate government response to protect marine ecosystems.
+    </p>
+
+    <h3 class="section-title">6.2 FUTURE ENHANCEMENTS</h3>
+    <p>
+      To extend the capabilities and real-world deployment of MarineWatch, the following enhancements are planned:
+    </p>
+    <ul>
+      <li><strong>IoT Smart Buoy Sensor Integration:</strong> Implementing MQTT or WebSocket microservices to ingest automated, real-time sensor streams directly from solar-powered coastal buoys.</li>
+      <li><strong>AI Satellite Oil Spill Detection:</strong> Integrating computer vision algorithms (e.g., Convolutional Neural Networks on Sentinel-1 SAR imagery) to automatically flag suspected offshore oil slicks.</li>
+      <li><strong>Automated Alert Notification Engine:</strong> Integrating SMS (Twilio) and WebPush notifications to alert municipal environmental officers and nearby citizens when severe water contamination is logged.</li>
+      <li><strong>Offline Progressive Web Application (PWA):</strong> Enabling Service Worker caching and IndexedDB offline persistence so field researchers can log observations in remote coastal zones without active cellular connectivity.</li>
+      <li><strong>Public Transparency &amp; Open Data Portal:</strong> Providing an open, authenticated public REST API allowing academic institutions to download anonymized time-series datasets in CSV and GeoJSON formats.</li>
+    </ul>
+  </div>
+
+  <!-- ==================== PAGE 13: APPENDIX (PARTS 1 - 3) ==================== -->
+  <div class="page">
+    <h1 class="chapter-title">APPENDIX</h1>
+    <h2 class="chapter-subtitle">SOURCE CODE</h2>
+
+    <h3 class="section-title">1. Project Structure</h3>
+    <p class="no-indent">Directory Tree of the Marine Pollution Monitor Project:</p>
+    <pre>
+marine-pollution-monitor/
+├── backend/
+│   ├── src/
+│   │   ├── config/
+│   │   │   └── db.js
+│   │   ├── controllers/
+│   │   │   ├── authController.js
+│   │   │   ├── crudController.js
+│   │   │   └── dashboardController.js
+│   │   ├── middleware/
+│   │   │   ├── auth.js
+│   │   │   └── error.js
+│   │   ├── models/
+│   │   │   ├── CleanupActivity.js
+│   │   │   ├── EnvironmentalIndicator.js
+│   │   │   ├── PollutionReport.js
+│   │   │   ├── User.js
+│   │   │   └── WaterQuality.js
+│   │   ├── routes/
+│   │   │   ├── auth.js
+│   │   │   ├── cleanup.js
+│   │   │   ├── generic.js
+│   │   │   ├── index.js
+│   │   │   └── reports.js
+│   │   ├── utils/
+│   │   │   └── token.js
+│   │   ├── seed.js
+│   │   └── server.js
+│   ├── .env.example
+│   └── package.json
+└── frontend/
+    ├── src/
+    │   ├── components/
+    │   │   ├── AppLayout.jsx
+    │   │   ├── EmptyState.jsx
+    │   │   ├── Modal.jsx
+    │   │   ├── SectionHeader.jsx
+    │   │   └── StatCard.jsx
+    │   ├── lib/
+    │   │   ├── api.js
+    │   │   └── AuthContext.jsx
+    │   ├── pages/
+    │   │   ├── Cleanup.jsx
+    │   │   ├── Dashboard.jsx
+    │   │   ├── Indicators.jsx
+    │   │   ├── Login.jsx
+    │   │   ├── Reports.jsx
+    │   │   └── WaterQuality.jsx
+    │   ├── main.jsx
+    │   └── styles.css
+    ├── package.json
+    └── index.html
+    </pre>
+
+    <h3 class="section-title">2. Backend Package Installation</h3>
+    <pre>
+# Terminal commands to initialize and install backend dependencies:
+cd backend
+npm install express mongoose dotenv cors bcryptjs jsonwebtoken
+npm install --save-dev nodemon
+    </pre>
+
+    <h3 class="section-title">3. Database Connection</h3>
+    <p class="no-indent"><code>backend/src/config/db.js</code></p>
+    <pre>
+import mongoose from 'mongoose';
+
+export async function connectDB() {
+  const uri = process.env.MONGO_URI;
+  if (!uri) throw new Error('MONGO_URI is missing');
+  await mongoose.connect(uri);
+  console.log('MongoDB connected');
+}
+    </pre>
+  </div>
+
+  <!-- ==================== PAGE 14: APPENDIX (PARTS 4 - 11) ==================== -->
+  <div class="page">
+    <h3 class="section-title">4. Environment Variables</h3>
+    <p class="no-indent"><code>backend/.env</code></p>
+    <pre>
+PORT=5000
+MONGO_URI=mongodb://127.0.0.1:27017/marine_pollution_monitor
+JWT_SECRET=supersecretmarinewatchtokenkey2026
+CLIENT_URL=http://localhost:5173
+    </pre>
+
+    <h3 class="section-title">5. User Model</h3>
+    <p class="no-indent"><code>backend/src/models/User.js</code></p>
+    <pre>
+import mongoose from 'mongoose';
+
+const userSchema = new mongoose.Schema({
+  name: { type: String, required: true, trim: true },
+  email: { type: String, required: true, unique: true, lowercase: true, trim: true },
+  password: { type: String, required: true, minlength: 6 },
+  role: { 
+    type: String, 
+    enum: ['admin', 'officer', 'ngo', 'citizen'], 
+    default: 'citizen' 
+  }
+}, { timestamps: true });
+
+export default mongoose.model('User', userSchema);
+    </pre>
+
+    <h3 class="section-title">6. Password Hashing and Registration</h3>
+    <p class="no-indent"><code>backend/src/controllers/authController.js (register)</code></p>
+    <pre>
+export async function register(req, res) {
+  const { name, email, password, role } = req.body;
+  if (!name || !email || !password) {
+    return res.status(400).json({ message: 'Name, email and password are required' });
+  }
+  const exists = await User.findOne({ email: email.toLowerCase() });
+  if (exists) {
+    return res.status(409).json({ message: 'Email already registered' });
+  }
+  const validRoles = ['admin', 'officer', 'ngo', 'citizen'];
+  const userRole = validRoles.includes(role) ? role : 'citizen';
+
+  const hash = await bcrypt.hash(password, 10);
+  const user = await User.create({
+    name,
+    email: email.toLowerCase(),
+    password: hash,
+    role: userRole
+  });
+
+  res.status(201).json({
+    token: makeToken(user.id),
+    user: { id: user.id, name: user.name, email: user.email, role: user.role }
+  });
+}
+    </pre>
+
+    <h3 class="section-title">7. Login and JWT Generation</h3>
+    <p class="no-indent"><code>backend/src/controllers/authController.js (login)</code></p>
+    <pre>
+export async function login(req, res) {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return res.status(400).json({ message: 'Email and password are required' });
+  }
+  const user = await User.findOne({ email: email.toLowerCase() });
+  if (!user || !(await bcrypt.compare(password, user.password))) {
+    return res.status(401).json({ message: 'Invalid email or password' });
+  }
+  res.json({
+    token: makeToken(user.id),
+    user: { id: user.id, name: user.name, email: user.email, role: user.role }
+  });
+}
+    </pre>
+
+    <h3 class="section-title">8. Authentication Middleware</h3>
+    <p class="no-indent"><code>backend/src/middleware/auth.js</code></p>
+    <pre>
+import jwt from 'jsonwebtoken';
+import User from '../models/User.js';
+
+export async function protect(req, res, next) {
+  try {
+    const header = req.headers.authorization || '';
+    if (!header.startsWith('Bearer ')) return res.status(401).json({ message: 'Authentication required' });
+    const token = header.slice(7);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = await User.findById(decoded.id).select('-password');
+    if (!req.user) return res.status(401).json({ message: 'User not found' });
+    next();
+  } catch {
+    res.status(401).json({ message: 'Invalid or expired token' });
+  }
+}
+
+export function allowRoles(...allowedRoles) {
+  return (req, res, next) => {
+    if (!req.user || (!allowedRoles.includes(req.user.role) && req.user.role !== 'admin')) {
+      return res.status(403).json({ message: `Access restricted to: ${allowedRoles.join(', ')}` });
+    }
+    next();
+  };
+}
+
+export function adminOnly(req, res, next) {
+  if (req.user?.role !== 'admin') return res.status(403).json({ message: 'Admin access required' });
+  next();
+}
+    </pre>
+
+    <h3 class="section-title">9. Create API</h3>
+    <p class="no-indent"><code>backend/src/routes/reports.js (POST)</code></p>
+    <pre>
+router.post('/', protect, async (req, res) => {
+  try {
+    const report = await PollutionReport.create({
+      ...req.body,
+      reportedBy: req.user._id
+    });
+    res.status(201).json(report);
+  } catch (err) {
+    res.status(400).json({ message: 'Error creating report', error: err.message });
+  }
+});
+    </pre>
+
+    <h3 class="section-title">10. Read API</h3>
+    <p class="no-indent"><code>backend/src/routes/reports.js (GET with search &amp; filters)</code></p>
+    <pre>
+router.get('/', protect, async (req, res) => {
+  try {
+    const { search, source, severity, status } = req.query;
+    const query = {};
+    if (search) {
+      query.$or = [
+        { title: { $regex: search, $options: 'i' } },
+        { location: { $regex: search, $options: 'i' } },
+        { description: { $regex: search, $options: 'i' } }
+      ];
+    }
+    if (source && source !== 'All') query.source = source;
+    if (severity && severity !== 'All') query.severity = severity;
+    if (status && status !== 'All') query.status = status;
+
+    const reports = await PollutionReport.find(query)
+      .sort({ reportedAt: -1 })
+      .populate('reportedBy', 'name email role');
+    res.json(reports);
+  } catch (err) {
+    res.status(500).json({ message: 'Error fetching reports', error: err.message });
+  }
+});
+    </pre>
+
+    <h3 class="section-title">11. Update API</h3>
+    <p class="no-indent"><code>backend/src/routes/reports.js (PATCH status)</code></p>
+    <pre>
+router.patch('/:id/status', protect, allowRoles('officer', 'admin', 'ngo'), async (req, res) => {
+  try {
+    const { status } = req.body;
+    const valid = ['Reported', 'Investigating', 'Cleanup Planned', 'Resolved'];
+    if (!valid.includes(status)) return res.status(400).json({ message: 'Invalid status' });
+    const report = await PollutionReport.findByIdAndUpdate(req.params.id, { status }, { new: true });
+    if (!report) return res.status(404).json({ message: 'Report not found' });
+    res.json(report);
+  } catch (err) {
+    res.status(500).json({ message: 'Error updating status' });
+  }
+});
+    </pre>
+  </div>
+
+  <!-- ==================== PAGE 15: APPENDIX (PARTS 12 - 17) ==================== -->
+  <div class="page">
+    <h3 class="section-title">12. Delete API</h3>
+    <p class="no-indent"><code>backend/src/routes/reports.js (DELETE - Admin only)</code></p>
+    <pre>
+router.delete('/:id', protect, adminOnly, async (req, res) => {
+  try {
+    const report = await PollutionReport.findByIdAndDelete(req.params.id);
+    if (!report) return res.status(404).json({ message: 'Report not found' });
+    res.json({ message: 'Report deleted' });
+  } catch (err) {
+    res.status(500).json({ message: 'Error deleting report' });
+  }
+});
+    </pre>
+
+    <h3 class="section-title">13. Express Routes</h3>
+    <p class="no-indent"><code>backend/src/routes/index.js</code></p>
+    <pre>
+import { Router } from 'express';
+import auth from './auth.js';
+import reports from './reports.js';
+import cleanup from './cleanup.js';
+import { makeCrudRoutes } from './generic.js';
+import WaterQuality from '../models/WaterQuality.js';
+import EnvironmentalIndicator from '../models/EnvironmentalIndicator.js';
+import { dashboard } from '../controllers/dashboardController.js';
+import { protect } from '../middleware/auth.js';
+
+const router = Router();
+router.use('/auth', auth);
+router.get('/dashboard', protect, dashboard);
+router.use('/reports', reports);
+router.use('/cleanup', cleanup);
+router.use('/water-quality', makeCrudRoutes(WaterQuality, 'recordedBy', '', ['officer', 'ngo', 'admin']));
+router.use('/indicators', makeCrudRoutes(EnvironmentalIndicator, 'recordedBy', '', ['officer', 'ngo', 'admin']));
+
+export default router;
+    </pre>
+
+    <h3 class="section-title">14. Main Server File</h3>
+    <p class="no-indent"><code>backend/src/server.js</code></p>
+    <pre>
+import 'dotenv/config';
+import express from 'express';
+import cors from 'cors';
+import { connectDB } from './config/db.js';
+import routes from './routes/index.js';
+import { errorHandler, notFound } from './middleware/error.js';
+
+const app = express();
+app.use(cors({ origin: true, credentials: true }));
+app.use(express.json());
+
+app.get('/api/health', (req, res) => res.json({ ok: true, service: 'Marine Pollution Monitor' }));
+app.use('/api', routes);
+app.use(notFound);
+app.use(errorHandler);
+
+const port = process.env.PORT || 5000;
+connectDB().then(() => app.listen(port, () => console.log(`API running on http://localhost:${port}`)))
+  .catch(err => { console.error(err); process.exit(1); });
+    </pre>
+
+    <h3 class="section-title">15. React Login Component</h3>
+    <p class="no-indent"><code>frontend/src/pages/Login.jsx (submit logic)</code></p>
+    <pre>
+async function submit(e) {
+  e.preventDefault();
+  setLoading(true);
+  setError('');
+  try {
+    if (isRegister) {
+      const r = await api.post('/auth/register', { name, email, password, role });
+      login(r.data.token, r.data.user);
+    } else {
+      const r = await api.post('/auth/login', { email, password });
+      login(r.data.token, r.data.user);
+    }
+    navigate('/dashboard');
+  } catch (err) {
+    setError(err.response?.data?.message || 'Authentication failed.');
+  } finally {
+    setLoading(false);
+  }
+}
+    </pre>
+
+    <h3 class="section-title">16. Admin Dashboard Logic</h3>
+    <p class="no-indent"><code>frontend/src/pages/Dashboard.jsx (data fetching)</code></p>
+    <pre>
+export default function Dashboard() {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    api.get('/dashboard')
+      .then(res => setData(res.data))
+      .catch(err => console.error('Dashboard load error', err))
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading || !data) return &lt;div className="spinner" /&gt;;
+  return (
+    &lt;div className="dashboard"&gt;
+      &lt;StatCard title="Active Incidents" count={data.stats.activeReports} /&gt;
+      &lt;StatCard title="Resolved Incidents" count={data.stats.resolvedReports} /&gt;
+      &lt;StatCard title="Volunteers Active" count={data.stats.totalVolunteers} /&gt;
+      &lt;StatCard title="Waste Collected (kg)" count={data.stats.totalWasteKg} /&gt;
+    &lt;/div&gt;
+  );
+}
+    </pre>
+
+    <h3 class="section-title">17. REST API Request and Response Examples</h3>
+    <p class="no-indent"><strong>Sample 1: Create Pollution Report (POST /api/reports)</strong></p>
+    <pre>
+// HTTP Request Body (POST /api/reports)
+{
+  "title": "Industrial Dye Effluent at Ennore Creek",
+  "source": "Industrial Discharge",
+  "severity": "High",
+  "location": "Ennore Creek North Bank, Chennai",
+  "latitude": 13.2312,
+  "longitude": 80.3241,
+  "description": "Dark chemical effluent discharging directly into coastal creek water.",
+  "imageUrl": "https://example.com/photos/ennore_spill.jpg"
+}
+
+// HTTP Response Body (Status: 201 Created)
+{
+  "_id": "66bc8d128f731c9a14e9f1a2",
+  "title": "Industrial Dye Effluent at Ennore Creek",
+  "source": "Industrial Discharge",
+  "severity": "High",
+  "location": "Ennore Creek North Bank, Chennai",
+  "latitude": 13.2312,
+  "longitude": 80.3241,
+  "description": "Dark chemical effluent discharging directly into coastal creek water.",
+  "imageUrl": "https://example.com/photos/ennore_spill.jpg",
+  "status": "Reported",
+  "reportedBy": "66bc8ca18f731c9a14e9f190",
+  "reportedAt": "2026-10-13T10:15:00.000Z",
+  "createdAt": "2026-10-13T10:15:00.000Z"
+}
+    </pre>
+
+    <p class="no-indent"><strong>Sample 2: User Authentication (POST /api/auth/login)</strong></p>
+    <pre>
+// HTTP Request Body (POST /api/auth/login)
+{
+  "email": "admin@marine.local",
+  "password": "Admin@123"
+}
+
+// HTTP Response Body (Status: 200 OK)
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "user": {
+    "id": "66bc8ca18f731c9a14e9f190",
+    "name": "Marine Administrator",
+    "email": "admin@marine.local",
+    "role": "admin"
+  }
+}
+    </pre>
+  </div>
+
+  <!-- ==================== PAGE 16: SCREENSHOTS OF THE PROJECT ==================== -->
+  <div class="page">
+    <h1 class="chapter-title" style="margin-bottom: 25px;">SCREENSHOTS OF THE PROJECT</h1>
+
+    <div style="border: 1px dashed #4b5563; padding: 15px; margin-bottom: 20px; text-align: center;">
+      <h4 style="margin: 0 0 10px 0;">Figure 1: User Authentication &amp; Role Selection Portal (Login / Register)</h4>
+      <div style="background:#f1f5f9; padding:20px; font-family:'Courier New', monospace; font-size:10pt; text-align:left;">
+        +-----------------------------------------------------------------------------------------+<br>
+        | [Compass] Marine Ecosystem Intelligence System                                          |<br>
+        | Track pollution. Protect oceans.                       [  Login  ] [  Register  ]       |<br>
+        | A unified full-stack platform connecting citizen       Email:    [ admin@marine.local ] |<br>
+        | incident reports, water telemetry, and cleanup stats.  Password: [ ••••••••••••       ] |<br>
+        |                                                        Role:     [ Admin            v ] |<br>
+        | [Quick Demo Login: Admin | Officer | NGO | Citizen]    [         Sign In Button       ] |<br>
+        +-----------------------------------------------------------------------------------------+
+      </div>
+      <p class="center-text" style="font-size: 10pt; margin-top: 5px; font-style: italic;">Interface supporting secure JWT login with preset multi-role switching.</p>
+    </div>
+
+    <div style="border: 1px dashed #4b5563; padding: 15px; margin-bottom: 20px; text-align: center;">
+      <h4 style="margin: 0 0 10px 0;">Figure 2: MarineWatch Executive Telemetry Dashboard</h4>
+      <div style="background:#f1f5f9; padding:20px; font-family:'Courier New', monospace; font-size:10pt; text-align:left;">
+        +-----------------------------------------------------------------------------------------+<br>
+        | [Active: 14]       [Resolved: 32]       [Volunteers: 184]       [Waste Collected: 4,250 kg] |<br>
+        +-----------------------------------------------------------------------------------------+<br>
+        |  [Recharts: Incident Severity Distribution]   |   [Recharts: Historical Water Telemetry] |<br>
+        |  |█ Low (8)                                  |   | pH: ~7.9 (Good)                      |<br>
+        |  |████ Medium (15)                           |   | Dissolved Oxygen: 6.8 mg/L           |<br>
+        |  |██ High (9)                                |   | Turbidity: 4.2 NTU                   |<br>
+        +-----------------------------------------------------------------------------------------+
+      </div>
+      <p class="center-text" style="font-size: 10pt; margin-top: 5px; font-style: italic;">Aggregated KPIs displaying incident severity metrics and water quality status.</p>
+    </div>
+
+    <div style="border: 1px dashed #4b5563; padding: 15px; text-align: center;">
+      <h4 style="margin: 0 0 10px 0;">Figure 3: Interactive Geospatial Incident Map &amp; Report Management</h4>
+      <div style="background:#f1f5f9; padding:20px; font-family:'Courier New', monospace; font-size:10pt; text-align:left;">
+        +-----------------------------------------------------------------------------------------+<br>
+        | [Search: Ennore...] [Filter Type: All v] [Filter Severity: High v] [+ Report Incident]  |<br>
+        +-----------------------------------------------------------------------------------------+<br>
+        | LEAFLET MAP VIEW:                                                                        |<br>
+        |   (• Blue Pin: Plastic)     (▲ Orange Pin: Industrial)     (■ Red Pin: Oil Spill)       |<br>
+        |   [Popup: Industrial Effluent | Status: Investigating | Lat: 13.23, Lng: 80.32]          |<br>
+        +-----------------------------------------------------------------------------------------+<br>
+        | Table: Title          | Source     | Severity | Coordinates     | Status      | Actions  |<br>
+        | Ennore Creek Runoff   | Industrial | High     | 13.2312, 80.324 | [Resolve v] | [Delete] |<br>
+        +-----------------------------------------------------------------------------------------+
+      </div>
+      <p class="center-text" style="font-size: 10pt; margin-top: 5px; font-style: italic;">Interactive Leaflet spatial coordinate pins with live incident lifecycle updater.</p>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 17: REFERENCES ==================== -->
+  <div class="page">
+    <h1 class="chapter-title" style="margin-bottom: 30px;">REFERENCES</h1>
+
+    <ol style="line-height: 1.8; font-size: 11pt;">
+      <li>
+        United Nations Division for Sustainable Development Goals, “Goal 14: Conserve and sustainably use the oceans, seas and marine resources for sustainable development,” <em>United Nations Department of Economic and Social Affairs</em>, 2023.
+      </li>
+      <li>
+        J. R. Jambeck, R. Geyer, C. Wilcox, T. R. Siegler, M. Perryman, A. Andrady, R. Narayan, and K. L. Law, “Plastic waste inputs from land into the ocean,” <em>Science</em>, vol. 347, no. 6223, pp. 768–771, 2015.
+      </li>
+      <li>
+        M. V. Eriksen, L. C. M. Lebreton, H. S. Carson, M. Thiel, C. J. Moore, J. C. Borerro, F. Galgani, P. G. Ryan, and J. Reisser, “Plastic pollution in the world's oceans: More than 5 trillion plastic pieces weighing over 250,000 tons afloat at sea,” <em>PLOS ONE</em>, vol. 9, no. 12, p. e111913, 2014.
+      </li>
+      <li>
+        World Health Organization (WHO), “Guidelines for safe recreational water environments: Volume 1 - Coastal and fresh waters,” <em>World Health Organization</em>, Geneva, Switzerland, 2021.
+      </li>
+      <li>
+        S. Kumar and R. Sharma, “Internet of Things (IoT) based smart water quality monitoring system,” <em>IEEE International Conference on Advances in Computing, Communications and Informatics (ICACCI)</em>, pp. 1125–1130, 2018.
+      </li>
+      <li>
+        E. P. B. Albaladejo, M. A. C. Terrado, and J. F. Villaverde, “A GIS-based mobile application for crowdsourced environmental monitoring and pollution reporting,” <em>Journal of Environmental Informatics Letters</em>, vol. 4, no. 1, pp. 18–27, 2020.
+      </li>
+      <li>
+        M. Cantelon, M. Harter, T. J. Holowaychuk, and N. Rajlich, <em>Node.js in Action</em>, 2nd ed. Shelter Island, NY, USA: Manning Publications, 2017.
+      </li>
+      <li>
+        A. Banks and E. Porcello, <em>Learning React: Modern Patterns for Developing React Apps</em>, 2nd ed. Sebastopol, CA, USA: O'Reilly Media, 2020.
+      </li>
+      <li>
+        K. Chodorow, <em>MongoDB: The Definitive Guide: Powerful and Scalable Data Storage</em>, 3rd ed. Sebastopol, CA, USA: O'Reilly Media, 2020.
+      </li>
+      <li>
+        A. Holmes, J. G. Smith, and D. Taylor, “Architectural patterns for scalable full-stack web applications using the MERN stack,” <em>Software: Practice and Experience</em>, vol. 52, no. 8, pp. 1890–1912, 2022.
+      </li>
+    </ol>
+  </div>
+
+</body>
+</html>
