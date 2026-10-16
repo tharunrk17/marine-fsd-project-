@@ -1,5 +1,7 @@
 # MarineWatch – Marine Pollution Monitor
 
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/tharunrk17/marine-fsd-project-)
+
 A full-stack MERN college project for tracking how **plastic pollution, industrial discharge, and oil spills** affect marine ecosystems. The platform stores structured environmental data and turns it into an interactive operational dashboard.
 
 ## Features
